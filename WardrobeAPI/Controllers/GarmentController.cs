@@ -66,7 +66,7 @@ public class GarmentController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var garmentToDelete = await _context.Garments.FindAsync(id);
-        if (garmentToDelete != null)
+        if (garmentToDelete == null)
         {
             return NotFound();
         }
