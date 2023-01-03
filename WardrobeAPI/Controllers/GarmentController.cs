@@ -32,4 +32,14 @@ public class GarmentController : ControllerBase
         var garment = await _context.Garments.FindAsync(id);
         return garment == null ? NotFound() : Ok(garment);
     }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<IActionResult> Create(Garment garment)
+    {
+        await _context.Garments.AddAsync(garment);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetById), new {id = garment.Id}, garment);
+    }
 }
