@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WardrobeAPI.Data;
+using WardrobeAPI.Models;
 
 namespace WardrobeAPI.Controllers;
 
@@ -15,4 +17,10 @@ public class GarmentController : ControllerBase
         _context = context;
     }
 
+    [HttpGet]
+
+    public async Task<IEnumerable<Garment>> Get()
+    {
+        return await _context.Garments.ToListAsync();
+    }
 }
