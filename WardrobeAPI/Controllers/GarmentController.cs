@@ -23,4 +23,13 @@ public class GarmentController : ControllerBase
     {
         return await _context.Garments.ToListAsync();
     }
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(Garment), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var garment = await _context.Garments.FindAsync(id);
+        return garment == null ? NotFound() : Ok(garment);
+    }
 }
