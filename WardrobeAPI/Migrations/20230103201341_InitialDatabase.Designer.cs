@@ -11,7 +11,7 @@ using WardrobeAPI.Data;
 namespace WardrobeAPI.Migrations
 {
     [DbContext(typeof(GarmentDbContext))]
-    [Migration("20230103084217_InitialDatabase")]
+    [Migration("20230103201341_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
