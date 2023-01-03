@@ -42,4 +42,20 @@ public class GarmentController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new {id = garment.Id}, garment);
     }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+    public async Task<IActionResult> Update(int id, Garment garment)
+    {
+        if (id != garment.Id)
+        {
+            return BadRequest();
+        }
+        
+        _context.Entry(garment).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 }
