@@ -7,8 +7,7 @@ public class GarmentDbContext : DbContext
 {
 	public GarmentDbContext(DbContextOptions<GarmentDbContext> options) : base(options)
 	{
-
 	}
 
-	DbSet<Garment> Garments {get; set; }
+	public DbSet<Garment> Garments { get; set; }
 }
