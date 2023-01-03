@@ -40,11 +40,11 @@ public class GarmentController : ControllerBase
         await _context.Garments.AddAsync(garment);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetById), new {id = garment.Id}, garment);
+        return CreatedAtAction(nameof(GetById), new { id = garment.Id }, garment);
     }
 
     [HttpPut]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
     public async Task<IActionResult> Update(int id, Garment garment)
@@ -53,8 +53,25 @@ public class GarmentController : ControllerBase
         {
             return BadRequest();
         }
-        
+
         _context.Entry(garment).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var garmentToDelete = await _context.Garments.FindAsync(id);
+        if (garmentToDelete != null)
+        {
+            return NotFound();
+        }
+        
+        _context.Garments.Remove(garmentToDelete);
         await _context.SaveChangesAsync();
         return NoContent();
     }
