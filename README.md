@@ -1,6 +1,7 @@
 # WardrobeAPI
 
 A simple API that act as an online wardrobe.
+Made using ASP.NET Web API
 
 ## Description
 
