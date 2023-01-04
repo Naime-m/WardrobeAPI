@@ -9,7 +9,7 @@ Add any garment that you want, edit it or delete it.
 
 ## Getting Started
 
-You have a few choices when entering a food in the API :
+You have a few choices when entering a garment in the API :
 - The name 
 - The color
 - The description
